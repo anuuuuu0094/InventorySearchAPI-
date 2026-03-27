@@ -1,28 +1,47 @@
-## Database Schema
+# Frontend – Inventory Search UI
 
-The database consists of two main tables: **Suppliers** and **Inventory**.
+## 📌 Requirement
 
-* The **Suppliers** table stores basic supplier details like name and city.
-* The **Inventory** table stores product-related data such as product name, quantity, price, and category.
+The task was to build a simple UI where users can:
 
-Each inventory item is linked to a supplier using `supplier_id`, creating a one-to-many relationship (one supplier can have multiple inventory items).
+* Search products using a text input
+* Filter by category (dropdown)
+* Apply price range (min & max)
+* View results in a list or table
+* Show a “No results found” message when nothing matches
 
----
-
-## Why I Chose SQL
-
-I chose SQL (PostgreSQL) because this project involves clear relationships between entities (suppliers and inventory).
-
-SQL makes it easy to:
-
-* maintain data integrity using foreign keys
-* perform joins between tables
-* run aggregation queries like total inventory value
+Additionally, the search should work with multiple filters and handle edge cases like empty input or invalid price range.
 
 ---
 
-## Optimization Suggestion
+## 💡 What I Implemented
 
-To improve performance for larger datasets, I would add an **index on frequently queried fields** such as `product_name` and `supplier_id`.
+I built the UI using React with a focus on simplicity and usability.
 
-This would make search and join operations faster.
+* Created a search input for product name (supports partial search)
+* Added a category dropdown to avoid invalid user input
+* Implemented min and max price filters
+* Displayed results using a clean card-based layout
+* Handled empty state with a proper “No results found” message
+* On initial load, all inventory items are shown (no filters case)
+
+I also added a small validation on the frontend to prevent invalid price ranges before sending the request.
+
+The UI is kept modular by splitting it into reusable components like SearchBar, Filters, and InventoryCard.
+
+---
+
+## ⚡ Search Flow (Frontend)
+
+* User enters filters → clicks search
+* Query params are sent to the backend
+* Response is rendered as cards
+* If no filters → all data is fetched
+
+---
+
+## 🚀 One Improvement (For Large Data)
+
+If the dataset grows, I would implement **pagination or infinite scroll** instead of loading all results at once.
+
+This will reduce load time and improve performance on the UI.
