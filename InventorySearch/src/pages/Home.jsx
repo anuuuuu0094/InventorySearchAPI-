@@ -37,7 +37,7 @@ const Home = () => {
       <div className="bg-white p-4 rounded shadow mb-6 space-y-3">
         <SearchBar value={query} onChange={setQuery} />
 
-        <div className="flex gap-3 flex-wrap">
+        <div className="flex flex-col sm:flex-row gap-3">
           <CategoryFilter value={category} onChange={setCategory} />
           <PriceFilter
             min={minPrice}
@@ -48,7 +48,7 @@ const Home = () => {
 
           <button
             onClick={handleSearch}
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            className="bg-blue-500 text-white px-4 py-2 rounded w-full sm:w-auto"
           >
             Search
           </button>
