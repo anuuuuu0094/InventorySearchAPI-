@@ -16,8 +16,14 @@ const Home = () => {
   const { data, loading, search } = useSearch();
 
   const handleSearch = () => {
+
       if (minPrice && maxPrice && Number(minPrice) > Number(maxPrice)) {
     alert("Min price cannot be greater than max price");
+    return;
+  }
+
+  if (!query && !category && !minPrice && !maxPrice) {
+    search({});
     return;
   }
     search({
@@ -28,6 +34,9 @@ const Home = () => {
     });
   };
 
+  useEffect(() => {
+    search({});
+  }, []);
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -54,6 +63,7 @@ const Home = () => {
           </button>
         </div>
       </div>
+
 
       {/* Results */}
       {loading ? (
