@@ -1,16 +1,47 @@
-# React + Vite
+# Frontend – Inventory Search UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Requirement
 
-Currently, two official plugins are available:
+The task was to build a simple UI where users can:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* Search products using a text input
+* Filter by category (dropdown)
+* Apply price range (min & max)
+* View results in a list or table
+* Show a “No results found” message when nothing matches
 
-## React Compiler
+Additionally, the search should work with multiple filters and handle edge cases like empty input or invalid price range.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 💡 What I Implemented
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+I built the UI using React with a focus on simplicity and usability.
+
+* Created a search input for product name (supports partial search)
+* Added a category dropdown to avoid invalid user input
+* Implemented min and max price filters
+* Displayed results using a clean card-based layout
+* Handled empty state with a proper “No results found” message
+* On initial load, all inventory items are shown (no filters case)
+
+I also added a small validation on the frontend to prevent invalid price ranges before sending the request.
+
+The UI is kept modular by splitting it into reusable components like SearchBar, Filters, and InventoryCard.
+
+---
+
+## ⚡ Search Flow (Frontend)
+
+* User enters filters → clicks search
+* Query params are sent to the backend
+* Response is rendered as cards
+* If no filters → all data is fetched
+
+---
+
+## 🚀 One Improvement (For Large Data)
+
+If the dataset grows, I would implement **pagination or infinite scroll** instead of loading all results at once.
+
+This will reduce load time and improve performance on the UI.
